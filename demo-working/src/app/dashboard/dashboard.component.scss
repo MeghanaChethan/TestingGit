@@ -1,0 +1,253 @@
+// @import "../home/home.component.scss";
+// .square {
+//      position: relative;
+  
+//     width: 500px;
+//     height: 500px;
+   
+//     border: 4px solid blue;
+//     color:white;
+//     padding:150px;
+//     background-image: linear-gradient(to right top, #153444, #113f58, #0e496c, #145381, #235c96, #206caa, #177dbd, #008ed1, #00aae2, #00c6ec, #13e1f0, #5ffbf1);
+//     animation: rotation 8s infinite linear;
+    
+//   }
+//   @keyframes rotation {
+//     from {
+//       transform: rotatex(0deg);
+     
+    
+//     }
+//     to {
+//       transform: rotatey(359deg);
+     
+//     }
+//   }
+  
+
+
+.card-wrapper {
+  display: inline-block;
+  perspective: 100%;
+
+  //--------------------------------------------------
+  // CARD FLIP RIGHT
+  //--------------------------------------------------
+  .card {
+    position: relative;
+    cursor: pointer;
+    transition-duration: 0.6s;
+    transition-timing-function: ease-in-out;
+    transform-style: preserve-3d;
+    animation: rotation 8s infinite linear;
+
+    .front, .back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      backface-visibility: hidden;
+       transform: rotateX(0deg);
+    }
+
+    .front {
+      z-index: 2;
+    }
+  }
+
+  //--------------------------------------------------
+  // CARD FLIP RIGHT
+  //--------------------------------------------------
+  &, &.flip-right {
+    .card {
+      .back {
+        transform: rotateY(180deg);
+      }
+    }
+
+    &:hover {
+      .card {
+        transform: rotateY(180deg);
+      }
+    }
+  }
+
+  //--------------------------------------------------
+  // CARD FLIP LEFT
+  //--------------------------------------------------
+  &.flip-left {
+    .card {
+      .back {
+        transform: rotateY(-180deg);
+      }
+    }
+
+    &:hover {
+      .card {
+        transform: rotateY(-180deg);
+      }
+    }
+  }
+
+  //--------------------------------------------------
+  // CARD FLIP UP
+  //--------------------------------------------------
+  &.flip-up {
+    .card {
+      .back {
+        transform: rotateX(180deg);
+      }
+    }
+
+    &:hover {
+      .card {
+        transform: rotateX(180deg);
+      }
+    }
+  }
+
+  //--------------------------------------------------
+  // CARD FLIP DOWN
+  //--------------------------------------------------
+  &.flip-down {
+    .card {
+      .back {
+        transform: rotateX(-180deg);
+      }
+    }
+
+    &:hover {
+      .card {
+        transform: rotateX(-180deg);
+      }
+    }
+  }
+
+  //--------------------------------------------------
+  // DIAGONAL RIGHT
+  //--------------------------------------------------
+  &.flip-diagonal-right {
+    .card {
+      .back {
+        transform: rotate3d(1, 1, 0, 180deg);
+      }
+    }
+
+    &:hover {
+      .card {
+        transform: rotate3d(1, 1, 0, 180deg);
+      }
+    }
+  }
+
+  //--------------------------------------------------
+  // DIAGONAL LEFT
+  //--------------------------------------------------
+  &.flip-diagonal-left {
+    .card {
+      .back {
+        transform: rotate3d(1, 1, 0, -180deg);
+      }
+    }
+
+    &:hover {
+      .card {
+        transform: rotate3d(1, 1, 0, -180deg);
+      }
+    }
+  }
+
+  //--------------------------------------------------
+  // INVERTED DIAGONAL RIGHT
+  //--------------------------------------------------
+  &.flip-inverted-diagonal-right {
+    .card {
+      .back {
+        transform: rotate3d(-1, 1, 0, 180deg);
+      }
+    }
+
+    &:hover {
+      .card {
+        transform: rotate3d(-1, 1, 0, 180deg);
+      }
+    }
+  }
+
+  //--------------------------------------------------
+  // INVERTED DIAGONAL LEFT
+  //--------------------------------------------------
+  &.flip-inverted-diagonal-left {
+    .card {
+      .back {
+        transform: rotate3d(1, -1, 0, 180deg);
+      }
+    }
+
+    &:hover {
+      .card {
+        transform: rotate3d(1, -1, 0, 180deg);
+      }
+    }
+  }
+}
+
+
+/* DEMO */
+body {
+  background: #E7BDD6;
+}
+
+.card-wrapper, .card {
+  width: 20px;
+  height: 20px;
+  padding: 125px;
+  margin-top: 100px;
+  margin-left: 200px;
+}
+
+.card {
+  .front, .back {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid  #FC545E;
+    border-radius: 4px;
+  }
+  
+  .front {
+   
+    color:  #FC545E;
+    background: #FFFFFF;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  
+  .back {
+  
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    background: #FC545E;
+    .back_d{
+      margin-top: 0px;
+    }
+    .back_p{
+     color: aquamarine;
+     margin-bottom: 20px;
+    }
+  }
+}
+@keyframes rotation {
+    from {
+      transform: rotatex(0deg);
+     
+    
+    }
+    to {
+      transform: rotatey(359deg);
+     
+    }
+  }

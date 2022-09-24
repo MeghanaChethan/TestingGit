@@ -1,0 +1,42 @@
+
+:host{
+    display:flex;
+    flex-direction: column;
+    height:100%;
+}
+
+mat-drawer{
+    width: 260px;
+    background:#0f172a;
+
+}
+mat-drawer-container{
+    height: 100%;
+}
+
+
+
+
+
+// ---------------------------------------------------------------------
+// .center {
+//     margin: 10rem;
+// }
+
+// mat-sidenav-container {
+//     height: 100%;
+// }
+// mat-sidenav, mat-sidenav-content {
+//     padding:16px;
+// }
+// mat-sidenav {
+//     background-color: lightcoral;
+//     width: 200px;
+// }
+
+// .navbar {
+//     justify-content: space-between;
+// }
+// span{
+//     padding-right: 1rem;
+// }
