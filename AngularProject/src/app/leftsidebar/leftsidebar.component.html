@@ -1,0 +1,898 @@
+<section class="resp">
+    <div>
+        <div class="row">
+            <div class="col-4">
+                <span class="toggle-button">
+                    <div class="menu-bar menu-bar-top"></div>
+                    <div class="menu-bar menu-bar-middle"></div>
+                    <div class="menu-bar menu-bar-bottom"></div>
+                </span>
+            </div>
+        </div>
+        <div class="menu-wrap">
+            <div class="menu-sidebar">
+                <mat-nav-list>
+                    <mat-list-item (click)="showAdminMasters = !showAdminMasters" class="parent"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m14">
+                        <span class="full-width" *ngIf="isExpanded || isShowing">Administrative Masters</span>
+                        <mat-icon mat-list-icon>account_circle</mat-icon>
+                        <mat-icon class="menu-button" [ngClass]="{'rotated' : showAdminMasters}"
+                            *ngIf="isExpanded || isShowing">
+                            expand_more</mat-icon>
+                    </mat-list-item>
+                    <div class="submenu" [ngClass]="{'expanded' : showAdminMasters}">
+                        <a mat-list-item (click)="routeChange('customers')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m15">Customers</a>
+                        <a mat-list-item (click)="routeChange('plant')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m16">Plants</a>
+                        <a mat-list-item (click)="routeChange('cells')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m17">Cells</a>
+                        <a mat-list-item (click)="routeChange('shifts')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m18">Shifts</a>
+                        <a mat-list-item (click)="routeChange('machines')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m30">Machines</a>
+                        <a mat-list-item (click)="routeChange('users')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m19">Users</a>
+                        <a mat-list-item (click)="routeChange('popup-master')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m20">Popup Masters</a>
+                        <a mat-list-item (click)="routeChange('uom')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m22">UOM</a>
+
+
+                        <mat-list-item (click)="showBrands = !showBrands" class="parent"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m10">
+                            <span class="full-width" *ngIf="isExpanded || isShowing">Brands & Models</span>
+                            <mat-icon class="menu-button" [ngClass]="{'rotated' : showBrands}"
+                                *ngIf="isExpanded || isShowing">
+                                expand_more</mat-icon>
+                        </mat-list-item>
+                        <div class="submenu" [ngClass]="{'expanded' : showBrands}">
+                            <a mat-list-item (click)="routeChange('brands')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m11">Brands</a>
+                            <a mat-list-item (click)="routeChange('machine-types')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m12">M/C Types</a>
+                            <a mat-list-item (click)="routeChange('machine-models')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m13">M/C Models</a>
+                        </div>
+
+                        <mat-list-item (click)="showFixtures = !showFixtures" class="parent"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().fixqcg">
+                            <span class="full-width" *ngIf="isExpanded || isShowing">Fixture & Gauges</span>
+                            <mat-icon class="menu-button" [ngClass]="{'rotated' : showFixtures}"
+                                *ngIf="isExpanded || isShowing">
+                                expand_more</mat-icon>
+                        </mat-list-item>
+                        <div class="submenu" [ngClass]="{'expanded' : showFixtures}">
+                            <a mat-list-item (click)="routeChange('qc-fixture-calibration')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().fxtr">Fixtures</a>
+                            <a mat-list-item (click)="routeChange('qc-guage-calibration')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().qcga">QC Gauges</a>
+                        </div>
+                    </div>
+
+                </mat-nav-list>
+
+                <mat-nav-list>
+                    <mat-list-item (click)="showAuth = !showAuth" class="parent"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m6">
+                        <span class="full-width" *ngIf="isExpanded || isShowing">Authorization</span>
+                        <mat-icon mat-list-icon>lock</mat-icon>
+                        <mat-icon class="menu-button" [ngClass]="{'rotated' : showAuth}"
+                            *ngIf="isExpanded || isShowing">
+                            expand_more</mat-icon>
+                    </mat-list-item>
+                    <div class="submenu" [ngClass]="{'expanded' : showAuth}">
+                        <a mat-list-item (click)="routeChange('app-modules-master')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m7">App Modules</a>
+                        <a mat-list-item (click)="routeChange('app-module')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m8">App Roles</a>
+                        <a mat-list-item (click)="routeChange('roles')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m28">Roles</a>
+                        <a mat-list-item (click)="routeChange('rolesmapping')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m29">Roles Mapping</a>
+                    </div>
+                </mat-nav-list>
+
+                <mat-nav-list>
+                    <mat-list-item (click)="showDashboards = !showDashboards" class="parent"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().DASHBD">
+                        <span class="full-width" *ngIf="isExpanded || isShowing">Dashboards</span>
+                        <mat-icon mat-list-icon>dashboard</mat-icon>
+                        <mat-icon class="menu-button" [ngClass]="{'rotated' : showDashboards}"
+                            *ngIf="isExpanded || isShowing">
+                            expand_more</mat-icon>
+                    </mat-list-item>
+                    <div class="submenu" [ngClass]="{'expanded' : showDashboards}">
+                        <a mat-list-item (click)="routeChange('maccarddb')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().newD">M/C Production</a>
+                    </div>
+                </mat-nav-list>
+
+                <mat-nav-list>
+                    <mat-list-item (click)="showReports = !showReports" class="parent"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m31">
+                        <span class="full-width" *ngIf="isExpanded || isShowing">Reports</span>
+                        <mat-icon mat-list-icon>donut_small</mat-icon>
+                        <mat-icon class="menu-button" [ngClass]="{'rotated' : showReports}"
+                            *ngIf="isExpanded || isShowing">
+                            expand_more</mat-icon>
+                    </mat-list-item>
+                    <div class="submenu" [ngClass]="{'expanded' : showReports}">
+                        <mat-list-item (click)="showAccreports = !showAccreports" class="parent"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().AccRpt">
+                            <span class="full-width" *ngIf="isExpanded || isShowing">Accountability Reports</span>
+                            <mat-icon mat-list-icon>stacked_bar_chart</mat-icon>
+                            <mat-icon class="menu-button" [ngClass]="{'rotated' : showAccreports}"
+                                *ngIf="isExpanded || isShowing">
+                                expand_more</mat-icon>
+                        </mat-list-item>
+                        <div class="submenu" [ngClass]="{'expanded' : showAccreports}">
+                            <a mat-list-item (click)="routeChange('accounatability-group')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().accGrp">Accountability
+                                Group</a>
+                            <a mat-list-item (click)="routeChange('overall-accountabality')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m36">Detailed
+                                Accountability</a>
+                        </div>
+
+
+                        <mat-list-item (click)="showMaintReports = !showMaintReports" class="parent"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().mntrpt">
+                            <span class="full-width" *ngIf="isExpanded || isShowing">Maintenance Reports</span>
+                            <mat-icon mat-list-icon>bar_chart</mat-icon>
+                            <mat-icon class="menu-button" [ngClass]="{'rotated' : showMaintReports}"
+                                *ngIf="isExpanded || isShowing">
+                                expand_more</mat-icon>
+                        </mat-list-item>
+                        <div class="submenu" [ngClass]="{'expanded' : showMaintReports}">
+                            <a mat-list-item (click)="routeChange('alarm')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m32">Alarm Report</a>
+                            <a mat-list-item (click)="routeChange('breakdownreport')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R11">Breakdown Report
+                            </a>
+                            <a mat-list-item (click)="routeChange('consumablereport')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m33">Consumable Report
+                            </a>
+                            <a mat-list-item (click)="routeChange('mttrmtbf')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R8">MTTR & MTBF
+                            </a>
+                        </div>
+
+
+                        <mat-list-item (click)="showProdReports = !showProdReports" class="parent"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().prdrpt">
+                            <span class="full-width" *ngIf="isExpanded || isShowing">Production Reports</span>
+                            <mat-icon mat-list-icon>area_chart</mat-icon>
+                            <mat-icon class="menu-button" [ngClass]="{'rotated' : showProdReports}"
+                                *ngIf="isExpanded || isShowing">
+                                expand_more</mat-icon>
+                        </mat-list-item>
+                        <div class="submenu" [ngClass]="{'expanded' : showProdReports}">
+                            <a mat-list-item (click)="routeChange('machine-activity')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R10">Activity Group</a>
+                            <a mat-list-item (click)="routeChange('idle')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R13">Detailed Idle
+                            </a>
+                            <a mat-list-item (click)="routeChange('oeereport')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R19">OEE Report
+                            </a>
+                            <a mat-list-item (click)="routeChange('operatorlog')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R6">Operator Log
+                            </a>
+                            <a mat-list-item (click)="routeChange('pause-report')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().pserpt">Pause Report
+                            </a>
+                            <a mat-list-item (click)="routeChange('planvsactual')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R7">Plan Vs Actual
+                            </a>
+                            <a mat-list-item (click)="routeChange('productionreport')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R9">Production Report
+                            </a>
+                            <a mat-list-item (click)="routeChange('qualitycheck')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R17">QC Result
+                            </a>
+                            <a mat-list-item (click)="routeChange('qclog')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().qclog">QC Log
+                            </a>
+                            <a mat-list-item (click)="routeChange('setupreport')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R12">Setup Report
+                            </a>
+                        </div>
+
+
+                        <mat-list-item (click)="showOperations = !showOperations" class="parent"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().oprt">
+                            <span class="full-width" *ngIf="isExpanded || isShowing">Operations</span>
+                            <mat-icon mat-list-icon>admin_panel_settings</mat-icon>
+                            <mat-icon class="menu-button" [ngClass]="{'rotated' : showOperations}"
+                                *ngIf="isExpanded || isShowing">
+                                expand_more</mat-icon>
+                        </mat-list-item>
+                        <div class="submenu" [ngClass]="{'expanded' : showOperations}">
+                            <a mat-list-item (click)="routeChange('biosbatterystatus')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().bios">Bios Battery
+                                Status</a>
+                            <a mat-list-item (click)="routeChange('machinedetails')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().mdr">M/C Details
+                            </a>
+                            <a mat-list-item (click)="routeChange('diagnostics')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().diag">M/C Diagnostics
+                            </a>
+                            <a mat-list-item (click)="routeChange('signalcheck')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().sigck">Signal Check
+                            </a>
+                        </div>
+
+                    </div>
+                </mat-nav-list>
+
+
+                <mat-nav-list>
+                    <mat-list-item (click)="showProdPlan = !showProdPlan" class="parent"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m23">
+                        <span class="full-width" *ngIf="isExpanded || isShowing">Production Planning</span>
+                        <mat-icon mat-list-icon>list_alt</mat-icon>
+                        <mat-icon class="menu-button" [ngClass]="{'rotated' : showProdPlan}"
+                            *ngIf="isExpanded || isShowing">
+                            expand_more</mat-icon>
+                    </mat-list-item>
+                    <div class="submenu" [ngClass]="{'expanded' : showProdPlan}">
+                        <a mat-list-item (click)="routeChange('productionplanning')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m23">Production Planning</a>
+                        <a mat-list-item (click)="routeChange('partmaster')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m24">Part Master</a>
+                        <a mat-list-item (click)="routeChange('setupmaster')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m25">Setup Master</a>
+                        <a mat-list-item (click)="routeChange('yearlyplanner')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ypl">Yearly Planner</a>
+                    </div>
+                </mat-nav-list>
+
+
+                <mat-nav-list>
+                    <mat-list-item (click)="showSMA = !showSMA" class="parent"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().sma">
+                        <span class="full-width" *ngIf="isExpanded || isShowing">SMA</span>
+                        <mat-icon mat-list-icon>engineering</mat-icon>
+                        <mat-icon class="menu-button" [ngClass]="{'rotated' : showSMA}" *ngIf="isExpanded || isShowing">
+                            expand_more</mat-icon>
+                    </mat-list-item>
+                    <div class="submenu" [ngClass]="{'expanded' : showSMA}">
+                        <a mat-list-item (click)="routeChange('preventive-maintenance')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().pm">Preventive
+                            Maintenance</a>
+                        <a mat-list-item (click)="routeChange('fixture-maintenance')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().fm">Fixture Maintenance</a>
+                        <a mat-list-item (click)="routeChange('qc-gauge-maintenance')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().gm">Gauge Maintenance</a>
+                    </div>
+                </mat-nav-list>
+
+
+                <mat-nav-list>
+                    <mat-list-item (click)="showAlerts = !showAlerts" class="parent"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT">
+                        <span class="full-width" *ngIf="isExpanded || isShowing">Alerts</span>
+                        <mat-icon mat-list-icon>error</mat-icon>
+                        <mat-icon class="menu-button" [ngClass]="{'rotated' : showAlerts}"
+                            *ngIf="isExpanded || isShowing">
+                            expand_more</mat-icon>
+                    </mat-list-item>
+                    <div class="submenu" [ngClass]="{'expanded' : showAlerts}">
+                        <mat-list-item (click)="showAlertIris = !showAlertIris" class="parent"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT">
+                            <span class="full-width" *ngIf="isExpanded || isShowing">Alerts IRIS</span>
+                            <mat-icon mat-list-icon>notifications_active</mat-icon>
+                            <mat-icon class="menu-button" [ngClass]="{'rotated' : showAlertIris}"
+                                *ngIf="isExpanded || isShowing">
+                                expand_more</mat-icon>
+                        </mat-list-item>
+                        <div class="submenu" [ngClass]="{'expanded' : showAlertIris}">
+                            <a mat-list-item (click)="routeChange('alertcreation')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT12">Labels & Mapping
+                            </a>
+                            <a mat-list-item (click)="routeChange('alertconfig')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT1">IRIS
+                                Configurator</a>
+                            <a mat-list-item (click)="routeChange('alertconfigaration')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRTP">Privilege
+                                Configurator
+                            </a>
+                        </div>
+
+
+
+                        <mat-list-item (click)="showAlertCust = !showAlertCust" class="parent"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT">
+                            <span class="full-width" *ngIf="isExpanded || isShowing">Alerts Customer</span>
+                            <mat-icon mat-list-icon>add_alert</mat-icon>
+                            <mat-icon class="menu-button" [ngClass]="{'rotated' : showAlertCust}"
+                                *ngIf="isExpanded || isShowing">
+                                expand_more</mat-icon>
+                        </mat-list-item>
+                        <div class="submenu" [ngClass]="{'expanded' : showAlertCust}">
+                            <a mat-list-item (click)="routeChange('emailrecipientroles')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT4">eMail - Recipient
+                                Roles
+                            </a>
+                            <a mat-list-item (click)="routeChange('smsrecipientroles')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT5">SMS - Recipient
+                                Roles
+                            </a>
+                            <a mat-list-item (click)="routeChange('alertcustomer-config')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT2">Customer
+                                Configurator
+                            </a>
+                            <a mat-list-item (click)="routeChange('alert-division-master')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT14">Division
+                            </a>
+                        </div>
+
+
+                        <mat-list-item (click)="showAlertShared = !showAlertShared" class="parent"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT">
+                            <span class="full-width" *ngIf="isExpanded || isShowing">Alerts Shared</span>
+                            <mat-icon mat-list-icon>edit_notifications</mat-icon>
+                            <mat-icon class="menu-button" [ngClass]="{'rotated' : showAlertShared}"
+                                *ngIf="isExpanded || isShowing">
+                                expand_more</mat-icon>
+                        </mat-list-item>
+                        <div class="submenu" [ngClass]="{'expanded' : showAlertShared}">
+                            <a mat-list-item (click)="routeChange('email-sms-temp')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT7">Templates
+                            </a>
+                            <a mat-list-item (click)="routeChange('alertemailsms')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT3">Recipient Groups
+                            </a>
+                        </div>
+
+                    </div>
+                </mat-nav-list>
+
+
+
+                <mat-nav-list>
+                    <mat-list-item (click)="showLocation = !showLocation" class="parent"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m1">
+                        <span class="full-width" *ngIf="isExpanded || isShowing">Location Masters</span>
+                        <mat-icon mat-list-icon>place</mat-icon>
+                        <mat-icon class="menu-button" [ngClass]="{'rotated' : showLocation}"
+                            *ngIf="isExpanded || isShowing">
+                            expand_more</mat-icon>
+                    </mat-list-item>
+                    <div class="submenu" [ngClass]="{'expanded' : showLocation}">
+                        <a mat-list-item (click)="routeChange('countries')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m2">Countries</a>
+                        <a mat-list-item (click)="routeChange('states')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m3">States</a>
+                        <a mat-list-item (click)="routeChange('cities')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m4">Cities</a>
+                        <a mat-list-item (click)="routeChange('regional-office')"
+                            *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m5">Regional Office</a>
+                    </div>
+                </mat-nav-list>
+                <mat-nav-list>
+                    <mat-list-item *ngIf="authService.isLoggedIn() && authService.getCurrentUser().appst"
+                        (click)="routeChange('appstore')">
+                        <span class="full-width">App Store</span>
+                        <mat-icon mat-list-icon style="color:lightgray !important">apps</mat-icon>
+                    </mat-list-item>
+                </mat-nav-list>
+                <mat-nav-list>
+                    <mat-list-item *ngIf="authService.isLoggedIn() && authService.getCurrentUser().INI"
+                        (click)="routeChange('folder')">
+                        <span class="full-width">DMS</span>
+                        <mat-icon mat-list-icon style="color:lightgray !important">backup</mat-icon>
+                    </mat-list-item>
+                </mat-nav-list>
+                <!-- <ul class="menu">
+                    <li class="menu-item-has-children"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().DASHBOARD">
+                        <span class="sidebar-menu-arrow">
+                            <i class="fa fa-desktop" aria-hidden="true"></i> &nbsp;Dashboards
+                        </span>
+                        <ul class="sub-menu">
+                            <li class="menu-item-has-children"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().DASHBOARD">
+                                <span class="sidebar-menu-arrow">
+                                    <i class="fa fa-desktop" aria-hidden="true"></i> &nbsp; Plant Wise Dashboards
+                                </span>
+                                <ul class="sub-menu">
+                                    <li routerLinkActive="active" (click)="routeChange('maccarddb')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().newD">
+                                        <a routerLink="/maccarddb">
+                                            <span class="spanCls"> Plant Level M/C Production Dashboard</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <span class="sidebar-menu-arrow">
+                            <i class="fa fa-location-arrow" aria-hidden="true"></i> &nbsp;General
+                            Masters
+                        </span>
+                        <ul class="sub-menu">
+                            <li class="menu-item-has-children"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m1">
+
+                                <span class="sidebar-menu-arrow">
+                                    <i class="fa fa-location-arrow" aria-hidden="true"></i> &nbsp;Location
+                                    Master
+                                </span>
+                                <ul class="sub-menu">
+                                    <li routerLinkActive="active" (click)="routeChange('countries')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m2">
+                                        <a routerLink="/countries">Countries</a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('states')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m3">
+                                        <a routerLink="/states">States</a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('cities')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m4">
+                                        <a routerLink="/cities">Cities</a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('regional-office')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m5">
+                                        <a routerLink="/regional-office">Regional Office</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m6">
+                        <span class="sidebar-menu-arrow">
+                            <i class="fa fa-lock" aria-hidden="true"></i> &nbsp;Authorization
+                        </span>
+                        <ul class="sub-menu">
+                            <li routerLinkActive="active" (click)="routeChange('app-modules-master')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m7">
+                                <a routerLink="/app-modules-master">App Modules </a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('app-module')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m8">
+                                <a routerLink="/app-module">App Roles & Features</a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('roles')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m28">
+                                <a>Roles</a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('rolesmapping')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m29">
+                                <a>Roles Mapping</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m14">
+                        <span class="sidebar-menu-arrow">
+                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                            &nbsp;Administrative
+                            Masters
+                        </span>
+                        <ul class="sub-menu">
+                            <li routerLinkActive="active" (click)="routeChange('customers')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m15">
+                                <a routerLink="/customers">Customers </a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('plant')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m16">
+                                <a routerLink="/plant">Plants </a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('cells')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m17">
+                                <a routerLink="/cells">Cells </a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('shifts')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m18">
+                                <a routerLink="/shifts">Shifts Master </a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('machines')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m30">
+                                <a routerLink="/machines">Machines Master </a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('users')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m19">
+                                <a routerLink="/users">User Master </a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('popup-master')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m20">
+                                <a routerLink="/popup-master">Popup Master </a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('uom')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m22">
+                                <a routerLink="/uom">UOM Master </a>
+                            </li>
+                            <li class="menu-item-has-children"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m10">
+                                <span class="sidebar-menu-arrow">
+                                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> &nbsp;Brands &
+                                    Models
+                                </span>
+                                <ul class="sub-menu">
+                                    <li routerLinkActive="active" (click)="routeChange('brands')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m15">
+                                        <a routerLink="/brands">Brands </a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('machine-types')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m12">
+                                        <a routerLink="/machine-types">Machine Types </a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('machine-models')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m13">
+                                        <a routerLink="/machine-models">Machine Models </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="sidebar-menu-arrow">
+                                    <i class="fa fa-dashboard" aria-hidden="true"></i>
+                                    &nbsp;Fixtures &
+                                    Gauges
+                                </span>
+                                <ul class="sub-menu">
+                                    <li routerLinkActive="active" (click)="routeChange('qc-fixture-calibration')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().fxtr">
+                                        <a routerLink="/qc-fixture-calibration">Fixtures</a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('qc-guage-calibration')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().qcga">
+                                        <a routerLink="/qc-guage-calibration">Gauges</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m23">
+                        <span class="sidebar-menu-arrow">
+                            <i class="fa fa-tasks"></i>&nbsp; Production Planning
+                        </span>
+                        <ul class="sub-menu">
+                            <li routerLinkActive="active" (click)="routeChange('partmaster')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m24">
+                                <a routerLink="/partmaster">Part
+                                    Master </a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('setupmaster')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R12">
+                                <a routerLink="/setupmaster">Setup
+                                    Master </a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('productionplanning')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m23">
+                                <a routerLink="/productionplanning">Production Planning </a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('yearlyplanner')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ypl">
+                                <a routerLink="/productionplanning">Yearly Planner </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().sma">
+                        <span class="sidebar-menu-arrow">
+                            <i class="fa fa-wrench"></i>&nbsp; SMA
+                        </span>
+                        <ul class="sub-menu">
+                            <li routerLinkActive="active" (click)="routeChange('preventive-maintenance')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().pm">
+                                <a routerLink="/preventive-maintenance">Preventive
+                                    Maintenance</a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('fixture-maintenance')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().fm">
+                                <a routerLink="/fixture-maintenance">Fixture
+                                    Maintenance</a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('qc-gauge-maintenance')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().gm">
+                                <a routerLink="/qc-gauge-maintenance">Gauge
+                                    Maintenance</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m31">
+                        <span class="sidebar-menu-arrow">
+                            <i class="fa fa-bar-chart"></i>&nbsp; Reports
+                        </span>
+                        <ul class="sub-menu">
+                            <li routerLinkActive="active" (click)="routeChange('accounatability-group')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().accGrp">
+                                <a routerLink="/accounatability-group">Accountability
+                                    Group</a>
+                            </li>
+
+                            <li routerLinkActive="active" (click)="routeChange('overall-accountabality')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().m36">
+                                <a>Detailed
+                                    Accountability</a>
+                            </li>
+
+                            <li class="menu-item-has-children">
+                                <span class="sidebar-menu-arrow">
+                                    <i class="fa fa-bar-chart"></i>&nbsp;Maintenance Reports
+                                </span>
+                                <ul class="sub-menu">
+                                    <li routerLinkActive="active" (click)="routeChange('alarm')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R3">
+                                        <a routerLink="/alarm">Alarm
+                                            Report </a>
+                                    </li>
+
+                                    <li routerLinkActive="active" (click)="routeChange('breakdownreport')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R11">
+                                        <a routerLink="/breakdownreport">Breakdown Report </a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('consumablereport')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R4">
+                                        <a routerLink="/consumablereport">Consumabe Report</a>
+                                    </li>
+
+                                    <li routerLinkActive="active" (click)="routeChange('mttrmtbf')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R8">
+                                        <a routerLink="/mttrmtbf">MTTR & MTBF</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="menu-item-has-children">
+                                <span class="sidebar-menu-arrow">
+                                    <i class="fa fa-bar-chart"></i>&nbsp;Production Reports
+                                </span>
+                                <ul class="sub-menu">
+                                    <li routerLinkActive="active" (click)="routeChange('machine-activity')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R10">
+                                        <a routerLink="/machine-activity">Activity Group</a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('idle')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R13">
+                                        <a routerLink="/idle">Detailed Idle</a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('oeereport')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R19">
+                                        <a routerLink="/oeereport">OEE Report</a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('operatorlog')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R6">
+                                        <a routerLink="/operatorlog">Operator Log</a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('pause-report')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().pserpt">
+                                        <a routerLink="/pause-report">Pause Report</a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('planvsactual')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R7">
+                                        <a routerLink="/planvsactual">Plan Vs Actual</a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('productionreport')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().PR">
+                                        <a routerLink="/productionreport">Production
+                                            Report</a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('qualitycheck')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R17">
+                                        <a routerLink="/qualitycheck">QC Result
+                                        </a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('qclog')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().qclog">
+                                        <a routerLink="/qclog">QC Log
+                                        </a>
+                                    </li>
+                                    <li routerLinkActive="active" (click)="routeChange('setupreport')"
+                                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().R11">
+                                        <a routerLink="/setupreport">Setup Report</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().oprt">
+                        <span class="sidebar-menu-arrow">
+                            <i class="fa fa-user-circle-o"></i>&nbsp; Operations
+                        </span>
+                        <ul class="sub-menu">
+                            <li routerLinkActive="active" (click)="routeChange('biosbatterystatus')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().accGrp">
+                                <a routerLink="/biosbatterystatus">Bios Battery Status</a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('machinedetails')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().mdr">
+                                <a routerLink="/machinedetails">M/C Details</a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('diagnostics')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().diag">
+                                <a routerLink="/diagnostics">M/C Diagnostics</a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('signalcheck')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().sigck">
+                                <a routerLink="/signalcheck">Signal Check</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT">
+                        <span class="sidebar-menu-arrow">
+                            <i class="fa fa-user-circle-o"></i>&nbsp; Alerts
+                        </span>
+                        <ul class="sub-menu">
+                            <li routerLinkActive="active" (click)="routeChange('alertcreation')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT12">
+                                <a routerLink="/alertcreation">Alert Label Mapping</a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('alertconfigaration')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRTP">
+                                <a routerLink="/alertconfigaration">Alert Privilege Configurator</a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('alertemailsms')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT3">
+                                <a routerLink="/alertemailsms">Alert Recipient Groups</a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('emailrecipientroles')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT4">
+                                <a routerLink="/emailrecipientroles">Email Recipient Roles</a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('smsrecipientroles')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT5">
+                                <a routerLink="/smsrecipientroles">SMS Recipient Roles</a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('alertcustomer-config')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT2">
+                                <a routerLink="/alertcustomer-config">Alert Customer Configurator</a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('email-sms-temp')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT7">
+                                <a routerLink="/email-sms-temp">Alert Templates</a>
+                            </li>
+                            <li routerLinkActive="active" (click)="routeChange('alert-division-master')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().ALRT14">
+                                <a routerLink="/alert-division-master">Alert Division</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().appst">
+                        <span class="sidebar-menu-arrow">
+                            <i class="fa fa-qrcode"></i>&nbsp; IRIS App Store
+                        </span>
+                        <ul class="sub-menu">
+                            <li routerLinkActive="active" (click)="routeChange('appstore')"
+                                *ngIf="authService.isLoggedIn() && authService.getCurrentUser().appst">
+                                <a routerLink="/appstore">App Store </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li routerLinkActive="active" (click)="routeChange('folder')"
+                        *ngIf="authService.isLoggedIn() && authService.getCurrentUser().INI">
+                        <a routerLink="/folder"><i class="fa fa-upload"></i>&nbsp; DMS</a>
+                    </li>
+
+                </ul> -->
+            </div>
+        </div>
+
+        <div id="main">
+
+            <nav class="navbar navbar-expand-sm bg-color navbar-dark ">
+                <img id="logos" alt="Logo" class="logo">
+                <span class="fill-remaining-space"></span>
+                <button mat-icon-button title="Go Home" mdTooltip="Home" (click)="routeChange('newlanding')">
+                    <mat-icon class="menu-icon">home</mat-icon>
+                </button>
+                <button mat-icon-button title="Full Screen" mdTooltip="Full Screen" (click)="openFullscreen()">
+                    <mat-icon class="menu-icon">open_in_full</mat-icon>
+                </button>
+                <button mat-icon-button title="Account Details" mdTooltip="User Info" [matMenuTriggerFor]="menu">
+                    <mat-icon id="topNav" class="menu-icon ele">account_circle</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <strong mat-menu-item>
+                        <span>
+                            {{authService.getCurrentUser().first_name}}
+                            <span *ngIf="authService.getCurrentUser().last_name!=null">
+                                {{authService.getCurrentUser().last_name}}</span> - (
+                            {{authService.getCurrentUser().role}} )
+                        </span>
+
+                    </strong>
+                    <small mat-menu-item> <strong>{{authService.getCurrentUser().customer}}</strong>
+                    </small>
+                    <hr>
+                    <button mat-menu-item class="menu-btn" (click)="logOut()">Log-out</button>
+                    <button mat-menu-item class="menu-btn" (click)="dialogFunction(changepwd)">
+                        Change Password</button>
+                </mat-menu>
+            </nav>
+        </div>
+    </div>
+</section>
+
+
+<ng-template #changepwd>
+
+    <div mat-dialog-title class="row p-3">
+        <div class="col-12">
+            <h4 class="text-center">Change Password</h4>
+        </div>
+    </div>
+    <div mat-dialog-content>
+        <form class="form-horizontal" [formGroup]="ChangePasswordForm">
+            <div class="row  p-3">
+
+                <div class="col-12 text-center">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Old Password</mat-label>
+                        <input matInput autocomplete="off" [(ngModel)]="old_password"
+                            [formControl]="ChangePasswordForm.controls['old_password']" name="old_password"
+                            type="password" class="form__field" placeholder="old_password" id='old_password' required />
+                    </mat-form-field>
+                    <mat-error class="text-danger"
+                        *ngIf="ChangePasswordForm.controls['old_password'].hasError('required') && ChangePasswordForm.controls['old_password'].touched"
+                        class="text-danger">
+                        Please Enter Old Password
+                    </mat-error>
+
+                </div>
+                <br>
+                <div class="col-12 text-center">
+                    <mat-form-field appearance="outline">
+                        <mat-label>New Password</mat-label>
+                        <input matInput autocomplete="off" [(ngModel)]="new_password"
+                            [formControl]="ChangePasswordForm.controls['new_password']" name="new_password"
+                            type="password" (keyup)="validation(2)"
+                            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,15}$"
+                            class="form__field" placeholder="new_password" id='new_password' required />
+                    </mat-form-field>
+                    <mat-error class="text-danger"
+                        *ngIf="ChangePasswordForm.controls['new_password'].hasError('required') && ChangePasswordForm.controls['new_password'].touched"
+                        class="text-danger">
+                        Please Enter New Password
+                    </mat-error>
+                </div>
+                <div class="col-12 text-center">
+                    <span class="progress " id="probar">
+                        <span class="progress-bar" aria-valuemin="0" aria-valuemax="100" id="myBar">
+                            <b>{{title_bar}}</b>
+                        </span>
+                    </span>
+                </div>
+                <div class="row p-3">
+                    <div class="col-6 text-left">
+                        <button type="button" class="cross_line" [class.disabled]="!ChangePasswordForm.valid"
+                            (click)="changePassword(ChangePasswordForm.value)">
+                            Update
+                        </button>
+                    </div>
+                    <div class="col-6 text-right">
+                        <button class="cross_line closeBtn" (click)="onNoClick()">
+                            Cancel
+                        </button>
+                    </div>
+
+                    <div class="col-12 text-center">
+                        <br>
+                        <strong class="text-danger">Note: Password must contain 4-15 characters with atleast one
+                            upper,lower,special character & number</strong>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</ng-template>

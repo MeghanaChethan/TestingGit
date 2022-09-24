@@ -1,0 +1,242 @@
+<body class="heightClss1">
+
+    <div class="row">
+        <div class="col-lg-8 col-md-12 col-sm-12 text-center">
+            <div class="col-12 text-center" style="margin-top: 5% !important;">
+                <img src="assets/img/logo/login2.png" alt="" style="width: 100%;height:auto;object-fit:cover;">
+            </div>
+            <div class="col-12">
+                <div class="Marquee">
+                    <div class="Marquee-content">
+                        <div class="Marquee-tag" title="Login to Explore about PMS">PMS</div>
+                        <div class="Marquee-tag" title="Login to Explore about SMS">SMS</div>
+                        <div class="Marquee-tag" title="Login to Explore about OTS">OTS</div>
+                        <div class="Marquee-tag" title="Login to Explore about Automation">Automation</div>
+                        <div class="Marquee-tag" title="Login to Explore about AGV">AGV</div>
+                        <div class="Marquee-tag" title="Login to Explore about SMA">SMA</div>
+                        <div class="Marquee-tag" title="Login to Explore about Alerts">Alerts</div>
+                        <div class="Marquee-tag" title="Login to Explore about VMS">VMS</div>
+                        <div class="Marquee-tag" title="Login to Explore about DMS">DMS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12 text-center" style="margin-top: 5% !important;">
+            <div class="col-12">
+                <strong> Sign In to</strong> <img src="assets/img/logo/iris1.png" alt=""
+                    style="width: 70px;height:30px;object-fit: contain;">
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-5">
+                        <hr style="color: black !important;">
+                    </div>
+                    <div class="col-2">
+                        <span>&amp;</span>
+                    </div>
+                    <div class="col-5">
+                        <hr style="color: black !important;">
+                    </div>
+                </div>
+            </div>
+            <div class="form__group field col-lg-12 col-md-12 col-sm-12 text-center">
+                <mat-form-field appearance="outline">
+                    <mat-label>Customer Code</mat-label>
+                    <input matInput [formControl]="loginForm.controls['customer_code']" name="customer_code"
+                        [(ngModel)]="customer_code" type="input" class="form__field" pattern="^[a-zA-Z0-9]+"
+                        maxlength="40" required />
+                </mat-form-field>
+                <mat-error class="text-danger"
+                    *ngIf="loginForm.controls['customer_code'].hasError('required') && loginForm.controls['customer_code'].touched"
+                    class="text-danger">
+                    Please Enter a Customer code (Max 40 Chars)
+                </mat-error>
+                <mat-error class="text-danger" *ngIf="loginForm.controls['customer_code'].hasError('pattern')"
+                    class="text-danger">
+                    Please Enter a Valid Customer Code (Alphanumerics are allowed,
+                    Ex:m2nxt) (Max 40 Chars)
+                </mat-error>
+
+            </div>
+            <div class="form__group field col-lg-12 col-md-12 col-sm-12 text-center">
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput [formControl]="loginForm.controls['username']" name="username" autocomplete="off"
+                        [(ngModel)]="username" type="input" class="form__field" pattern="^[a-zA-Z0-9]+" maxlength="40"
+                        required />
+                </mat-form-field>
+                <mat-error class="text-danger"
+                    *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched"
+                    class="text-danger">
+                    Please Enter a Username (Max 40 Chars)
+                </mat-error>
+                <mat-error class="text-danger" *ngIf="loginForm.controls['username'].hasError('pattern')"
+                    class="text-danger">
+                    Please Enter Valid Username (Alphanumerics are allowed,
+                    Ex:m2nxt) (Max 40 Chars)
+                </mat-error>
+            </div>
+            <div class="form__group field col-lg-12 col-md-12 col-sm-12 text-center">
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput [formControl]="loginForm.controls['password']" name="password" autocomplete="off"
+                        [(ngModel)]="password" type="password" class="form__field" maxlength="40" required />
+                </mat-form-field>
+                <mat-error class="text-danger"
+                    *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched"
+                    class="text-danger">
+                    Please Enter a Password (Max 40 Chars)
+                </mat-error>
+              
+            </div>
+            <br>
+            <div class="col-12 text-center">
+                <button class="btn btn-primary btn-lg" [class.disabled]="!loginForm.valid"
+                    (click)="loginCheck(loginForm.value,basic)">
+                    Login
+                </button>
+            </div>
+            <br>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-5">
+                        <hr>
+                    </div>
+                    <div class="col-2">
+                        <span>&amp;</span>
+                    </div>
+                    <div class="col-5">
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-12 text-left">
+                <span>Follows us on : </span>
+                <a href="https://www.facebook.com/m2nxt/" target="_blank" class="fa fa-facebook"></a>
+                <a href="https://www.linkedin.cn/company/m2nxt/" target="_blank" class="fa fa-linkedin"></a>
+                <a href="https://www.youtube.com/channel/UCj6VMzg1FYi4QUcrLh8oLzQ" target="_blank"
+                    class="fa fa-youtube"></a>
+            </div>
+            <div class="col-12 text-left">
+                <span style="font-size:small">Explore more @ <a style="color: orange" target="_blank"
+                        href="https://m2nxt.com">m2nxt.com</a></span>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<ng-template #basic let-c="close" let-d="dismiss">
+    <div mat-dialog-title class="bg-danger">
+        <h4 class="text-center">Confirm Box</h4>
+    </div>
+    <div mat-dialog-content>
+        <div [hidden]="hideconfirm">
+            <div class="row p-3">
+                <div class="col-12 text-center">
+                    <h6> <strong> Its Been Long, Would You Like to Change
+                            Password........? </strong></h6>
+                </div>
+                <div class="col-12 text-center">
+                    <img src="assets/images/sad.gif" alt="" class="imgC">
+                </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-6 text-center">
+                    <button class="btn btn-md btn-primary " style="cursor: pointer;" (click)="showForm()">Yes</button>
+                </div>
+                <div class="col-6 text-center">
+                    <button class="btn btn-md btn-warning closeBtn " style="cursor: pointer;"
+                        (click)="skipLogin();onNoClick()">Skip</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div [hidden]="hidechangePassword">
+            <form class="form-horizontal" [formGroup]="ChangePassword"
+                (ngSubmit)="changePassword(ChangePassword.value)">
+                <div class="row  p-3">
+
+                    <div class="form__group field col-12 text-center">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Old Password</mat-label>
+                            <input autocomplete="off" matInput [formControl]="ChangePassword.controls['old_password']"
+                                name="old_password" autocomplete="off" [(ngModel)]="old_password" type="password"
+                                id='old_password' class="form__field" maxlength="40" required />
+                        </mat-form-field>
+                        <mat-error class="text-danger"
+                            *ngIf="ChangePassword.controls['old_password'].hasError('required') && ChangePassword.controls['old_password'].touched"
+                            class="text-danger">
+                            Please Enter Old Password (Max 40 Chars)
+                        </mat-error>
+                    </div>
+                    <br>
+                    <div class="form__group field col-12 text-center">
+                        <mat-form-field appearance="outline">
+                            <mat-label>New Password</mat-label>
+                            <input matInput [formControl]="ChangePassword.controls['new_password']" name="new_password"
+                                autocomplete="off" [(ngModel)]="new_password" type="password" (keyup)="validation(2)"
+                                pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,15}$"
+                                id='new_password' class="form__field" maxlength="40" required />
+                        </mat-form-field>
+                        <mat-error class="text-danger"
+                            *ngIf="ChangePassword.controls['new_password'].hasError('required') && ChangePassword.controls['new_password'].touched"
+                            class="text-danger">
+                            Please Enter New Password (Max 40 Chars)
+                        </mat-error>
+
+                    </div>
+                    <div class="form__group field col-12 text-center">
+                        <span class="progress " id="probar">
+                            <span class="progress-bar" aria-valuemin="0" aria-valuemax="100" id="myBar">
+                                <b>{{title_bar}}</b>
+                            </span>
+                        </span>
+                    </div>
+
+
+                </div>
+            </form>
+            <div class="row text-center">
+                <div class="col-6 ">
+                    <button class="btn btn-success btn-md" [class.disabled]="!ChangePassword.valid"
+                        style="min-width: 140px !important" (click)="changePassword(ChangePassword.value)"
+                        id="loadingDiv">
+                        Save Changes
+                    </button>
+
+                </div>
+                <div class="col-6 ">
+                    <button class="btn btn-secondary btn-md" (click)="skipLogin();onNoClick()" id="spanSkip"
+                        style="min-width: 140px !important;cursor: pointer;">
+                        Skip..
+                    </button>
+                </div>
+                <div class="col-12 text-center">
+                    <br>
+                    <strong class="text-danger">Note: Password must contain 4-15 characters with atleast one
+                        upper,lower,special character & number</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</ng-template>
+<footer class="footer ">
+    <!-- <hr> -->
+    <div class="row mt">
+        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 text-center">
+            <h6 class=" mt">Copyright &#169; {{presentYear}}-{{currenTYear}} BFW Ltd. All rights reserved </h6>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 text-center">
+            <h6 class=" mt">Developed by IRIS Team</h6>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 text-center">
+            <h6 class="mt">Version 4.0.0</h6>
+        </div>
+
+    </div>
+</footer>

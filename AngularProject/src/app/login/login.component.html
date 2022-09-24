@@ -1,0 +1,207 @@
+<!-- <body style="overflow:hidden !important"> -->
+    <div>
+        <div class="starsec"></div>
+        <div class="starthird"></div>
+        <div class="starfourth"></div>
+        <div class="starfifth"></div>
+    </div>
+    <section class="backClass ">
+        <div class="row">
+            <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 ">
+                <!-- [hidden]="step1" -->
+                <img src="assets/img/logo/newlogbg.png" alt="" class="imgClass">
+            </div>
+            <!-- <div [hidden]="step2" class="col-lg-8 col-md-8 col-sm-12 col-xs-12 heighCls">
+                <img src="assets/img/logo/editedlatestiris.png" alt="" class="imgClass">
+            </div> -->
+            <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12  ">
+                <form class="form-horizontal" [formGroup]="login">
+                    <div class="container">
+                        <div [hidden]="step1" class="step1height">
+    
+                            <div class="col-12 text-center">
+                                <h1 class="h1Class applyColor1">Intelligent Reliable Innovative Seamless</h1>
+                            </div>
+                            <div class="col-12 text-center">
+                                <h1 class="h1Class applyColor1">Welcome</h1>
+                            </div>
+                            <div class="col-12 text-center">
+                                <h1 class="h1Class applyColor1">To</h1>
+                            </div>
+                            <div class="col-12 text-center">
+                                <h1 class="h1Class applyColor1">Single Source of Truth</h1>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-12 text-center" >
+                                <label class="pure-material-textfield-outlined">
+                                    <input class="form-control" name="customer_code" placeholder="Customer Code" type="text"
+                                        autocomplete="off" [(ngModel)]="customer_code"
+                                        [formControl]="login.controls['customer_code']" pattern="^[a-zA-Z0-9]+" required>
+                                    <span>Customer Code</span>
+                                </label>
+                            </div>
+                            <br>
+                            <div class="col-12 text-center">
+                                <button class="cross_line" [class.disabled]="!customer_code"
+                                    (click)="checkCustomer(login.value)">
+                                    Continue
+                                </button>
+                            </div>
+                            <br>
+                            <div [hidden]="invalidCode" class="text-danger col-12 text-center">Invalid Customer Code.
+                            </div>
+                            <div [hidden]="validateCode" class="col-12 text-center" style="color:#33a6c2">
+                                <strong>Validating Customer Code.Please Wait...</strong>
+                            </div>
+                        </div>
+    
+                        <div [hidden]="step2" class="step1height">
+                            <!-- <div class="row cusData"> -->
+                            <div class="row">
+    
+                                <div class="logo_hidden_tab col-sm-12 col-md-12 col-lg-12">
+                                    <img *ngIf="filePath!=null;"
+                                        class=" img-circle img-responsive login-page user-avatar imgNew"
+                                        src="{{apiGalleryPath}}/CustomerLogo/{{filePath}}" alt="">
+                                    <img *ngIf="filePath==null;"
+                                        class=" img-circle img-responsive login-page user-avatar imgNew"
+                                        src="assets/img/logo/bfw-logo.png" alt="BFW Logo">
+                                </div>
+                                <div class="form__group field col-sm-12 col-md-12 col-lg-12">
+                                    <h5 class="text-dark cusName"> <strong>{{customername}}</strong></h5>
+                                </div>
+                            </div>
+    
+                            <br>
+                            <div class="col-12 text-center" >
+                                <label class="pure-material-textfield-outlined">
+                                    <input class="form-control" name="username" placeholder="Username" type="text"
+                                        autocomplete="off" [(ngModel)]="username" [formControl]="login.controls['username']"
+                                        pattern="^[a-zA-Z0-9]+" required>
+                                    <span>Username</span>
+                                </label>
+                            </div>
+                            <div class="col-12 text-center" >
+                                <label class="pure-material-textfield-outlined">
+                                    <input class="form-control" name="password" placeholder="Password" type="password"
+                                        autocomplete="off" [(ngModel)]="password" [formControl]="login.controls['password']"
+                                        required>
+                                    <span>Password</span>
+                                </label>
+                            </div>
+                            <br>
+                            <div class="col-12 text-center">
+                                <button class="cross_line" [class.disabled]="!login.valid"
+                                    (click)="loginCheck(login.value,basic)">
+                                    Login
+                                </button>
+                            </div>
+                            <br>
+                            <div [hidden]="invalidLogin" class="col-12 text-center text-danger">Invalid Logins.</div>
+    
+                            <div [hidden]="validateLogin" class="col-12 text-center text-dark">
+                                Logging In.Please Wait...
+                            </div>
+    
+                        </div>
+    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section>
+        <app-footer></app-footer>
+    </section>
+    <!-- </body> -->
+    <ng-template #basic let-c="close" let-d="dismiss">
+        <div mat-dialog-title class="bg-danger">
+            <h4 class="text-center">Confirm Box</h4>
+        </div>
+        <div mat-dialog-content>
+            <div [hidden]="hideconfirm">
+                <div class="row p-3">
+                    <div class="col-12 text-center">
+                        <h6> <strong> Its Been Long, Would You Like to Change
+                                Password........? </strong></h6>
+                    </div>
+                    <div class="col-12 text-center">
+                        <img src="assets/images/sad.gif" alt="" class="imgC">
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col-6 text-center">
+                        <button class="btn btn-md btn-primary " style="cursor: pointer;" (click)="showForm()">Yes</button>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button class="btn btn-md btn-warning closeBtn " style="cursor: pointer;"
+                            (click)="skipLogin();onNoClick()">Skip</button>
+                    </div>
+                </div>
+                <!-- <button type="button" title="Click Yes to change password" class="btn btn-success btn-md btnbb"
+                        (click)="showForm()" style="cursor: pointer;">Yes</button>
+                    <button title="Skip & Continue" class="btn btn-info btnbb"
+                        (click)="skipLogin();onNoClick()">skip</button> -->
+    
+            </div>
+    
+            <div [hidden]="hidechangePassword">
+                <form class="form-horizontal" [formGroup]="ChangePassword"
+                    (ngSubmit)="changePassword(ChangePassword.value)">
+                    <div class="row  p-3">
+    
+                        <div class="form__group field col-12 text-center">
+                            <input autocomplete="off" [(ngModel)]="old_password"
+                                [formControl]="ChangePassword.controls['old_password']" name="old_password" type="password"
+                                class="form__field" placeholder="old_password" id='old_password' required />
+                            <label for="old_password" class="form__label">Old Password</label>
+                        </div>
+                        <br>
+                        <div class="form__group field col-12 text-center">
+                            <input autocomplete="off" [(ngModel)]="new_password"
+                                [formControl]="ChangePassword.controls['new_password']" name="new_password" type="password"
+                                (keyup)="validation(2)"
+                                pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,15}$"
+                                class="form__field" placeholder="new_password" id='new_password' required />
+                            <label for="new_password" class="form__label">New Password</label>
+    
+                        </div>
+                        <div class="form__group field col-12 text-center">
+                            <span class="progress " id="probar">
+                                <span class="progress-bar" aria-valuemin="0" aria-valuemax="100" id="myBar">
+                                    <b>{{title_bar}}</b>
+                                </span>
+                            </span>
+                        </div>
+    
+    
+                    </div>
+                </form>
+                <div class="row p-3">
+                    <div class="col-6 text-center" style="padding: 8px !important;">
+                        <button type="button" class="cross_line" [class.disabled]="!ChangePassword.valid"
+                            (click)="changePassword(ChangePassword.value)" id="loadingDiv">
+                            Save Changes
+                        </button>
+                    </div>
+                    <div class="col-6 text-right" style="padding: 8px !important;">
+                        <button type="button" id="spanSkip" class="cross_line closeBtn" style="cursor: pointer;"
+                            (click)="skipLogin();onNoClick()">
+                            Skip..
+                        </button>
+                    </div>
+                    <div class="col-12 text-center">
+                        <br>
+                        <strong class="text-danger">Note: Password must contain 4-15 characters with atleast one
+                            upper,lower,special character & number</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+    </ng-template>
+    
+    
+    
