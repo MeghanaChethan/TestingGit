@@ -1,0 +1,28 @@
+<form  [formGroup]="signupForm" (ngSubmit)="signup()">
+    <div class="row">
+        <div class="mb-3">
+            <label for="exampleInputName" class="form-label">Name</label>
+            <input formControlName="name" type="name" class="form-control" id="exampleInputName" autocomplete="off">
+        </div>
+    
+        <div class="mb-3">
+            <label for="exampleInputMobile" class="form-label">Mobile Number</label>
+            <input formControlName="mobile" type="text" class="form-control" id="exampleInputMobile" autocomplete="off">
+        </div>
+    
+        <div class="mb-3">
+            <label for="exampleInputEmail" class="form-label">Email Address</label>
+            <input formControlName="email" type="email" class="form-control" id="exampleInputEmail" autocomplete="off">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword" class="form-label">Password</label>
+            <input formControlName="password" type="password" class="form-control" id="exampleInputPassword">
+        </div>
+        
+        <input class="btn btn-primary" type="reset" value="Reset">&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary">Signup</button>
+            <a style="color:blue; margin-top:10px;" routerLink="/login">Already Member ? Click to Login!</a>
+    </div>
+    </form>
+    

@@ -1,0 +1,85 @@
+<div class="title">
+    <p class="titlep">CALCULATING OEE WORKSHEET</p>
+</div>
+<div class="row1">
+    <div class="inputData">
+        <p class="machine">Machine : {{machine}}</p>
+    </div>
+    <div class="inputData">
+        <p class="date">Shift : {{date}}</p>
+    </div>
+    <div class="inputData">
+        <p class="oee_type">Oee Type : {{showMe}}</p>
+    </div>
+    <div class="inputData">
+        <p class="oee">OEE : {{oee}}%</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-5">
+        <p class="oeesubtitle">OEE DATA</p>
+        <p class="shift_dur">Shift Length : {{shift_dur/60}}</p>
+        <p class="shift_break_dur">Break time : {{shift_break_dur/60}}</p>
+        <p class="idle_duration">Idle time : {{idle_duration/60}}</p>
+        <p class="breakdown_duration">Breakdown time : {{breakdown_duration/60}}</p>
+        <p class="setup_duration">Setup time : {{setup_duration/60}}</p>
+        <p class="cycling_count">Pieces Produced per Shift(Cycling Count) : {{cycling_count}}</p>
+        <p class="not_ok">Rejected Pieces Per Shift(not ok) : {{not_ok}}</p>
+
+
+        <p class="oeeVarCal">OEE VARIABLE CALCULATION</p>
+        <p class="production_plan_time">Planned Production Time : {{production_plan_time/60}}</p>
+        <p class="operational_time">Operating Time : {{operational_time/60}}</p>
+        <p class="good_part">Good Pieces Per Shift : {{good_part}}</p>
+
+
+
+        <p class="oeeFacCal">OEE FACTOR CALCULATION</p>
+        <p class="availability_percentage">Availability : {{availability_percentage}}%</p>
+        <p class="performance_percentage">Performance : {{performance_percentage}}%</p>
+        <p class="quality_percentage">Quality : {{quality_percentage}}%</p>
+        <p class="overallOee">Overall OEE : {{oee}}%</p>
+
+
+    </div>
+
+    <div class="col-4">
+
+        <p  class="col2title" [hidden]="oee_type == 0">PERFORMANCE DATA</p>
+        <table class="table table-bordered" [hidden]="oee_type == 0">
+            <thead>
+                <tr>
+                    <th>program_no</th>
+                    <th>cycling_duration</th>
+                    <th>produced_part</th>
+                    <th>total_time_of_Part</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of program_no">
+
+                    <td>{{ item.program_no }}</td>
+                    <td>{{ item.cycling_duration }}</td>
+                    <td>{{ item.produced_part }}</td>
+                    <td>{{ item.total_time_of_Part }}</td>
+
+                </tr>
+            </tbody>
+        </table>
+        <p class="col2total">Total Time to Produce Part : {{total_time_to_produce_part}}</p>
+        <p class="col2partinMin">Produced Part In Min : {{produced_part_in_min}}</p>
+    </div>
+
+
+    <div class="col-2">
+
+        <p class="cus_opt">CUSTOMER OPTIONS</p>
+        <p class="shift_brk" >Shift Break Time : {{shift_break}}</p>
+        <p class="idle_dur">Idle Duration : {{idle}}</p>
+        <p class="brk_dur">Break Down Duration : {{breakdown}}</p>
+        <p class="setup_dur">Setup Duration : {{setup}}</p>
+
+
+    </div>
+</div>
